@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Admin Dashboard - FarmFleet</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* Dashboard specific styles */
+    body {
+      display: flex;
+      min-height: 100vh;
+      background: #f7fafc;
+      font-family: Arial, sans-serif;
+      margin: 0;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      width: 250px;
+      background-color: #2f855a;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      padding: 2rem 1rem;
+      position: fixed;
+      height: 100vh;
+    }
+    .sidebar h2 {
+      margin-bottom: 2rem;
+      text-align: center;
+      font-size: 1.8rem;
+      font-weight: bold;
+    }
+    .sidebar nav a {
+      color: white;
+      display: block;
+      padding: 0.8rem 1rem;
+      margin-bottom: 0.5rem;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: background-color 0.3s;
+    }
+    .sidebar nav a:hover,
+    .sidebar nav a.active {
+      background-color: #276749;
+    }
+
+    /* Main content */
+    .main-content {
+      margin-left: 250px;
+      padding: 2rem;
+      flex-grow: 1;
+    }
+
+    /* Header */
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2rem;
+    }
+    .header h1 {
+      font-size: 2rem;
+      color: #2d3748;
+    }
+    .logout-btn {
+      background-color: #e53e3e;
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 30px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background-color 0.3s;
+    }
+    .logout-btn:hover {
+      background-color: #9b2c2c;
+    }
+
+    /* Dashboard cards */
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
+      gap: 1.5rem;
+    }
+    .card {
+      background: white;
+      padding: 1.5rem;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+    .card h3 {
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+      color: #2f855a;
+    }
+    .card p {
+      font-size: 2rem;
+      font-weight: bold;
+      color: #276749;
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      body {
+        flex-direction: column;
+      }
+      .sidebar {
+        position: relative;
+        width: 100%;
+        height: auto;
+        flex-direction: row;
+        justify-content: space-around;
+        padding: 1rem 0;
+      }
+      .sidebar h2 {
+        display: none;
+      }
+      .sidebar nav {
+        display: flex;
+        gap: 1rem;
+      }
+      .main-content {
+        margin-left: 0;
+        padding: 1rem;
+      }
+      .cards {
+        grid-template-columns: repeat(auto-fit,minmax(140px,1fr));
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <aside class="sidebar">
+    <h2>Farmfleet Admin</h2>
+    <nav>
+      <a href="#" class="active">Dashboard</a>
+      <a href="user-list.html">Manage Users</a>
+      <a href="#">Manage Equipment</a>
+      <a href="#">View Rentals</a>
+      <a href="#">Messages</a>
+      <a href="login.html">Logout</a>
+    </nav>
+  </aside>
+
+  <main class="main-content">
+    <header class="header">
+      <h1>Dashboard Overview</h1>
+      <button class="logout-btn" onclick="location.href='login.html'">Logout</button>
+    </header>
+
+    <section class="cards">
+      <div class="card">
+        <h3>Total Users</h3>
+        <p>1,254</p>
+      </div>
+      <div class="card">
+        <h3>Equipment Registered</h3>
+        <p>587</p>
+      </div>
+      <div class="card">
+        <h3>Rentals Today</h3>
+        <p>43</p>
+      </div>
+      <div class="card">
+        <h3>New Messages</h3>
+        <p>7</p>
+      </div>
+    </section>
+  </main>
+
+</body>
+</html>

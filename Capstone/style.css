@@ -1,0 +1,333 @@
+/* Reset and base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f2f2f2;
+}
+
+/* Navbar */
+.navbar {
+  background-color: #2f855a;
+  padding: 1rem 2rem;
+  color: white;
+}
+.navbar .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap; /* allow wrap */
+}
+.logo {
+  font-size: 1.8rem;
+  font-weight: bold;
+}
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+.nav-links a {
+  color: white;
+  text-decoration: none;
+}
+.nav-links a:hover {
+  text-decoration: underline;
+}
+
+/* Hero */
+.hero {
+  background-color: #e6ffed;
+  text-align: center;
+  padding: 4rem 2rem;
+}
+.hero h2 {
+  font-size: 2.5rem;
+  color: #22543d;
+  margin-bottom: 1rem;
+}
+.hero p {
+  font-size: 1.2rem;
+  color: #2f855a;
+  margin-bottom: 2rem;
+}
+.hero-buttons .btn {
+  padding: 0.75rem 1.5rem;
+  border-radius: 30px;
+  text-decoration: none;
+  font-weight: bold;
+  margin: 0 10px;
+  display: inline-block;
+}
+.btn.green {
+  background-color: #2f855a;
+  color: white;
+}
+.btn.green:hover {
+  background-color: #276749;
+}
+.btn.yellow {
+  background-color: #ecc94b;
+  color: white;
+}
+.btn.yellow:hover {
+  background-color: #d69e2e;
+}
+
+/* Sections */
+.section {
+  padding: 4rem 2rem;
+  text-align: center;
+}
+.section.light {
+  background-color: #fff;
+}
+.section-title {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  color: #2d3748;
+}
+
+/* Cards */
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: center;
+}
+.card {
+  background-color: white;
+  padding: 1rem;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  max-width: 300px;
+  flex: 1 1 280px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.card img {
+  width: 100%;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  object-fit: cover;
+}
+.card h4 {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+  text-align: center;
+}
+.card p {
+  color: #555;
+  margin-bottom: 0.25rem;
+  text-align: center;
+}
+.card button {
+  margin-top: auto;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 5px;
+  background-color: #2f855a;
+  color: white;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+.card button:hover {
+  background-color: #276749;
+}
+
+/* Form */
+.form {
+  max-width: 500px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.form label {
+  text-align: left;
+  font-weight: bold;
+  margin-bottom: 0.25rem;
+}
+.form input,
+.form select {
+  padding: 0.5rem;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+.form button {
+  padding: 0.75rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: #2f855a;
+  color: white;
+  transition: background-color 0.3s ease;
+}
+.form button:hover {
+  background-color: #276749;
+}
+
+/* Footer */
+.footer {
+  background-color: #2f855a;
+  color: white;
+  text-align: center;
+  padding: 1rem;
+}
+
+/* Modal Styles */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+  background-color: #fff;
+  margin: 15% auto;
+  padding: 2rem;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 500px;
+  position: relative;
+  animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(-100px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.close {
+  position: absolute;
+  right: 1.5rem;
+  top: 1rem;
+  font-size: 1.5rem;
+  font-weight: bold;
+  cursor: pointer;
+  color: #666;
+}
+
+.close:hover {
+  color: #000;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+  color: #2f855a;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 1rem;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: #2f855a;
+  box-shadow: 0 0 0 2px rgba(47, 133, 90, 0.1);
+}
+
+#totalPrice {
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: #2f855a;
+  margin-top: 0.5rem;
+}
+
+/* MEDIA QUERIES for responsiveness */
+
+/* Phones */
+@media (max-width: 600px) {
+  .navbar .container {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .nav-links {
+    flex-direction: column;
+    width: 100%;
+    gap: 0.75rem;
+    margin-top: 0.5rem;
+  }
+  .nav-links li {
+    width: 100%;
+  }
+  .nav-links a {
+    display: block;
+    width: 100%;
+    padding: 0.5rem 0;
+  }
+
+  .hero h2 {
+    font-size: 1.8rem;
+  }
+  .hero p {
+    font-size: 1rem;
+  }
+  .hero-buttons .btn {
+    margin: 0.5rem 0;
+    width: 100%;
+    max-width: 250px;
+  }
+
+  .card-container {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  .card {
+    max-width: 100%;
+    flex-basis: 100%;
+  }
+
+  .modal-content {
+    margin: 10% auto;
+    padding: 1.5rem;
+    width: 95%;
+  }
+}
+
+/* Tablets */
+@media (max-width: 900px) {
+  .card-container {
+    justify-content: space-around;
+  }
+  .card {
+    flex: 1 1 45%;
+  }
+  .hero h2 {
+    font-size: 2rem;
+  }
+  .hero p {
+    font-size: 1.1rem;
+  }
+  .hero-buttons .btn {
+    margin: 0.5rem;
+  }
+}

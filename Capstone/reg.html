@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Farmfleet Registration</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(to right, #a8e063, #56ab2f);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .register-wrapper {
+      background-color: white;
+      padding: 2rem 2.5rem;
+      border-radius: 12px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+      width: 100%;
+      max-width: 420px;
+      animation: fadeIn 1s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .tabs {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 1rem;
+    }
+
+    .tab {
+      flex: 1;
+      padding: 0.7rem;
+      text-align: center;
+      cursor: pointer;
+      font-weight: 600;
+      color: #2f855a;
+      background-color: #f0f0f0;
+      border-radius: 8px 8px 0 0;
+      transition: background 0.3s;
+    }
+
+    .tab.active {
+      background-color: #2f855a;
+      color: white;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 1rem;
+      color: #2f855a;
+    }
+
+    form {
+      display: none;
+      flex-direction: column;
+    }
+
+    form.active {
+      display: flex;
+    }
+
+    label {
+      margin-top: 0.7rem;
+      font-size: 0.95rem;
+    }
+
+    input {
+      padding: 0.6rem;
+      margin-top: 0.2rem;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 1rem;
+    }
+
+    button {
+      margin-top: 1.5rem;
+      padding: 0.8rem;
+      background-color: #2f855a;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    button:hover {
+      background-color: #276749;
+    }
+
+    .link {
+      text-align: center;
+      margin-top: 1rem;
+      font-size: 0.9rem;
+    }
+
+    .link a {
+      color: #2f855a;
+      text-decoration: none;
+    }
+
+    .link a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 500px) {
+      .register-wrapper {
+        padding: 1.5rem;
+      }
+
+      .tab {
+        font-size: 0.9rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="register-wrapper">
+    <div class="tabs">
+      <div class="tab active" id="userTab">User</div>
+      <div class="tab" id="ownerTab">Owner</div>
+    </div>
+
+    <!-- User Registration Form -->
+    <form id="userForm" class="active" action="register-user.php" method="POST">
+      <h2>User Registration</h2>
+      <label for="user-name">Full Name</label>
+      <input type="text" name="name" id="user-name" required>
+
+      <label for="user-email">Email</label>
+      <input type="email" name="email" id="user-email" required>
+
+      <label for="user-phone">Phone</label>
+      <input type="tel" name="phone" id="user-phone" required>
+
+      <label for="user-password">Password</label>
+      <input type="password" name="password" id="user-password" required>
+
+      <button type="submit">Register</button>
+      <div class="link">
+        Already registered? <a href="login.html">Login</a>
+      </div>
+    </form>
+
+    <!-- Owner Registration Form -->
+    <form id="ownerForm" action="register-owner.php" method="POST">
+      <h2>Owner Registration</h2>
+      <label for="owner-name">Full Name</label>
+      <input type="text" name="name" id="owner-name" required>
+
+      <label for="owner-email">Email</label>
+      <input type="email" name="email" id="owner-email" required>
+
+      <label for="owner-phone">Phone</label>
+      <input type="tel" name="phone" id="owner-phone" required>
+
+      <label for="owner-location">Location</label>
+      <input type="text" name="location" id="owner-location" required>
+
+      <label for="owner-password">Password</label>
+      <input type="password" name="password" id="owner-password" required>
+
+      <button type="submit">Register</button>
+      <div class="link">
+        Already registered? <a href="login.html">Login</a>
+      </div>
+    </form>
+  </div>
+
+  <script>
+    const userTab = document.getElementById('userTab');
+    const ownerTab = document.getElementById('ownerTab');
+    const userForm = document.getElementById('userForm');
+    const ownerForm = document.getElementById('ownerForm');
+
+    userTab.addEventListener('click', () => {
+      userTab.classList.add('active');
+      ownerTab.classList.remove('active');
+      userForm.classList.add('active');
+      ownerForm.classList.remove('active');
+    });
+
+    ownerTab.addEventListener('click', () => {
+      ownerTab.classList.add('active');
+      userTab.classList.remove('active');
+      ownerForm.classList.add('active');
+      userForm.classList.remove('active');
+    });
+
+    // Handle user registration
+    userForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const userData = {
+        name: document.getElementById('user-name').value,
+        email: document.getElementById('user-email').value,
+        phone: document.getElementById('user-phone').value,
+        role: 'user',
+        status: 'active'
+      };
+
+      // Get existing users or initialize empty array
+      const users = JSON.parse(localStorage.getItem('users')) || [];
+      
+      // Add new user
+      users.push(userData);
+      
+      // Save back to localStorage
+      localStorage.setItem('users', JSON.stringify(users));
+      
+      alert('Registration successful!');
+      window.location.href = 'login.html';
+    });
+
+    // Handle owner registration
+    ownerForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const ownerData = {
+        name: document.getElementById('owner-name').value,
+        email: document.getElementById('owner-email').value,
+        phone: document.getElementById('owner-phone').value,
+        location: document.getElementById('owner-location').value,
+        role: 'owner',
+        status: 'active'
+      };
+
+      // Get existing users or initialize empty array
+      const users = JSON.parse(localStorage.getItem('users')) || [];
+      
+      // Add new owner
+      users.push(ownerData);
+      
+      // Save back to localStorage
+      localStorage.setItem('users', JSON.stringify(users));
+      
+      alert('Registration successful!');
+      window.location.href = 'login.html';
+    });
+  </script>
+</body>
+</html>

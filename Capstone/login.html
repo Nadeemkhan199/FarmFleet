@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Login - Farmfleet</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(to right, #a8e063, #56ab2f);
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .login-container {
+      background-color: #fff;
+      padding: 2.5rem 2rem;
+      border-radius: 15px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+      width: 100%;
+      max-width: 400px;
+      animation: fadeIn 1s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    h2 {
+      text-align: center;
+      color: #2f855a;
+      margin-bottom: 1.5rem;
+    }
+
+    label {
+      font-weight: 600;
+      display: block;
+      margin: 0.8rem 0 0.3rem;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 0.7rem;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 1rem;
+    }
+
+    .btn {
+      width: 100%;
+      margin-top: 1.5rem;
+      padding: 0.8rem;
+      background-color: #2f855a;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .btn:hover {
+      background-color: #276749;
+    }
+
+    .error-msg {
+      color: red;
+      font-size: 0.9rem;
+      margin-top: 0.8rem;
+      display: none;
+    }
+
+    .register-link {
+      text-align: center;
+      margin-top: 1rem;
+      font-size: 0.95rem;
+    }
+
+    .register-link a {
+      color: #2f855a;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .register-link a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 480px) {
+      .login-container {
+        padding: 2rem 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="login-container">
+    <h2>Login to Farmfleet</h2>
+    <form id="loginForm">
+      <label for="username">Username</label>
+      <input type="text" id="username" placeholder="Enter your username" required />
+
+      <label for="password">Password</label>
+      <input type="password" id="password" placeholder="Enter your password" required />
+
+      <label for="role">Select Role</label>
+      <select id="role" required>
+        <option value="">-- Select Role --</option>
+        <option value="user">User</option>
+        <option value="owner">Owner</option>
+        <option value="admin">Admin</option>
+      </select>
+
+      <div class="error-msg" id="errorMsg"></div>
+
+      <button type="submit" class="btn">Login</button>
+    </form>
+
+    <div class="register-link">
+      Don't have an account? <a href="reg.html">Register here</a>
+    </div>
+  </div>
+
+  <script>
+    const loginForm = document.getElementById('loginForm');
+    const errorMsg = document.getElementById('errorMsg');
+
+    loginForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const username = this.username.value.trim();
+      const password = this.password.value.trim();
+      const role = this.role.value;
+
+      if (!username || !password || !role) {
+        errorMsg.textContent = 'Please fill all fields and select a role.';
+        errorMsg.style.display = 'block';
+        return;
+      }
+
+      errorMsg.style.display = 'none';
+
+      // Dummy logic — replace with server call
+      if (username === 'admin' && password === 'admin123' && role === 'admin') {
+        alert('Welcome Admin! Redirecting...');
+        window.location.href = 'admin-dashboard.html';
+      } else if (role === 'owner') {
+        alert(`Welcome Owner ${username}! Redirecting...`);
+        window.location.href = 'register.html';
+      } else if (role === 'user') {
+        alert(`Welcome User ${username}! Redirecting...`);
+        window.location.href = 'index.html';
+      } else {
+        errorMsg.textContent = 'Invalid login credentials or role.';
+        errorMsg.style.display = 'block';
+      }
+    });
+  </script>
+
+</body>
+</html>

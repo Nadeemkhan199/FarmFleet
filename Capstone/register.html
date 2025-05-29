@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Register Equipment</title>
+  <style>
+    body { font-family: Arial; padding: 2rem; background: #f0fff4; }
+    form { max-width: 400px; margin: auto; background: white; padding: 1.5rem; border-radius: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.1); }
+    label { display: block; margin-top: 1rem; font-weight: bold; }
+    input, select { width: 100%; padding: 0.5rem; margin-top: 0.3rem; }
+    button { margin-top: 1.5rem; padding: 0.7rem 1rem; background: #2f855a; color: white; border: none; border-radius: 5px; cursor: pointer; }
+  </style>
+</head>
+<body>
+
+<h2 style="text-align:center;">Register New Equipment</h2>
+
+<form id="registerForm">
+  <label for="name">Equipment Name</label>
+  <input type="text" id="name" required>
+
+  <label for="category">Category</label>
+  <select id="category" required>
+    <option value="Tractor">Tractor</option>
+    <option value="Plough">Plough</option>
+    <option value="Seeder">Seeder</option>
+    <option value="Harvester">Harvester</option>
+  </select>
+
+  <label for="location">Location</label>
+  <input type="text" id="location" required>
+
+  <label for="price">Price per Day (₹)</label>
+  <input type="number" id="price" required>
+
+  <button type="submit">Register Equipment</button>
+</form>
+
+<script>
+  document.getElementById('registerForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    const newItem = {
+      name: document.getElementById('name').value,
+      category: document.getElementById('category').value,
+      location: document.getElementById('location').value,
+      price: parseInt(document.getElementById('price').value),
+    };
+
+    const existing = JSON.parse(localStorage.getItem('equipmentList')) || [];
+    existing.push(newItem);
+    localStorage.setItem('equipmentList', JSON.stringify(existing));
+
+    alert("Equipment registered successfully!");
+    window.location.href = "owner-dashboard.html";
+  });
+</script>
+
+</body>
+</html>
+
